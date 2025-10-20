@@ -10,15 +10,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')  // 正确配置路径别名
     }
   },
-  // css: {
-  //   postcss: {
-  //    plugins: [
-  //      pxtorem({
-  //       rootValue: 37.5,
-  //       unitPrecision: 3,
-  //       propList: ['*'],
-  //      })
-  //    ] 
-  //   }
-  // }
+   css: {
+     postcss: {
+      plugins: [
+        pxtorem({
+         rootValue: 37.5,
+         unitPrecision: 3,
+         propList: ['*'],
+        })
+      ] 
+     }
+   }
 })
