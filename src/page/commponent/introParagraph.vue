@@ -17,21 +17,29 @@
 
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
+
 .main-header {
     display: grid;
     grid-template-columns: repeat(2,1fr); /* 左右各占一半 */
     padding: 15px  ; /* 可选：添加内边距 */
     
-img{
-   border-radius: 100%; 
-   width: 100%;
-   height: 100%;
-   object-fit: fill; /* 保持图片比例并覆盖整个容器 */
-}
+img {
+    border-radius: 50%; /* 关键修改：50%实现完美圆形 */
+    width: 150px; /* 建议固定宽高 */        height: 150px;
+    object-fit: cover; /* 保持比例并填充容器 */
+    margin: 0 auto; /* 水平居中 */        display: block; /* 消除图片下方空白 */
+    }
 .name-field {
+    font-family: "AliMaMa";
     font-size: 17px;
+    
     color: rgb(13, 13, 13);
+    background: linear-gradient(90deg, #534dff, #6e81ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block; /* 确保渐变生效 */
     padding: 15px;
 }
 .intro-section {
