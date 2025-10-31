@@ -22,7 +22,7 @@
 .main-header {
     display: grid;
     grid-template-columns: repeat(2,1fr); /* 左右各占一半 */
-    padding: 15px  ; /* 可选：添加内边距 */
+    padding: 10px;
     
 img {
     border-radius: 50%; /* 关键修改：50%实现完美圆形 */
@@ -32,7 +32,7 @@ img {
     }
 .name-field {
     font-family: "AliMaMa";
-    font-size: 17px;
+    font-size: 16px;
     
     color: rgb(13, 13, 13);
     background: linear-gradient(90deg, #534dff, #6e81ff);
