@@ -4,13 +4,14 @@
      <introParagraph></introParagraph>
     <!-- 底部区域 -->
      <defalultQuestionVue></defalultQuestionVue>
+     <chatMessage></chatMessage>
    </div>
 </template>
 
 <script setup>
 import introParagraph from '@/page/commponent/introParagraph.vue';
 import defalultQuestionVue from '@/page/commponent/defalultQuestion.vue';
-
+import chatMessage from '@/page/commponent/chatMessage.vue';
 </script>
 
 <style lang="less" scoped>
