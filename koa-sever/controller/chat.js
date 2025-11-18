@@ -40,8 +40,8 @@ class ChatController {
             const obj = JSON.parse(str);
             const choice = obj.choices[0].delta;
 
-            // 确保最后一条消息是assistant
-           
+            // console.log(choice.tool_calls);
+            if (choice.tool_calls != null) {
                 console.log("有工具调用");
                 if (messages[messages.length - 1].role !== "assistant") {
                     messages.push({
@@ -63,7 +63,7 @@ class ChatController {
                         functionName = toolCalls[0].function.name;
                         lastMessage.tool_calls.push(toolCalls[0]);
                     }
-                    console.log(choice,"22222222222222")
+                    console.log(choice, "22222222222222")
                     console.log(toolCalls, "11111111111111")
                     // 拼接参数
                     toolCalls.forEach((item) => {
@@ -78,16 +78,33 @@ class ChatController {
 
 
                 }
-            
+                console.log(obj.choices[0].finish_reason, "33333333")
+                
+            }
+            if (obj.choices[0].finish_reason === "tool_calls") {
+                    // console.log("工具名称:", functionName);
+                    // console.log("工具参数:", requireParameters);
+                    // console.log("消息",messages)
+                    const resObj = { type: "function", functionName, data: JSON.parse(requireParameters) };
+                    const buffer = Buffer.from(JSON.stringify(resObj))
+                    ctx.status = 200;
+                    ctx.res.write(buffer);
+                }
+                //没工具调用
+                if(choice.content){
+                    const resObj = { type: "content", functionName, data: choice.content };
+                    const buffer = Buffer.from(JSON.stringify(resObj))
+                    ctx.status = 200;
+                    ctx.res.write(buffer);
+                }
 
         }
-        console.log("工具名称:", functionName);
-        console.log("工具参数:", requireParameters);
-        console.log("消息",messages)
 
 
 
 
+
+        console.log("这是下一次调用");
         // for await (const chunk of completion){
         //      const str= JSON.stringify(chunk);
         //         const obj= JSON.parse(str);
