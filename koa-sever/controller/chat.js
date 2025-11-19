@@ -148,6 +148,10 @@ class ChatController {
 
 
     }
+    //图片上传
+    async uploadFile(ctx) {
+        
+    }
 }
 
 module.exports = new ChatController();
