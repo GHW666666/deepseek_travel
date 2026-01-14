@@ -150,8 +150,8 @@ class ChatController {
     }
     //图片上传
     async uploadFile(ctx) {
-        ctx.send(`http://${ctx.host}/${ctx.file.destination}/${ctx.file.filename}`)
-        console.log(`http://${ctx.host}/${ctx.file.destination}/${ctx.file.filename}`)
+        ctx.send(`http://${ctx.host}/${ctx.file.destination}${ctx.file.filename}`)
+        console.log(`http://${ctx.host}/${ctx.file.destination}${ctx.file.filename}`)
     }
 }
 

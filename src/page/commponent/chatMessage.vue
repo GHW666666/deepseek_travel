@@ -13,13 +13,16 @@
 />
 </div>
 <div class="ai-message">
-    <div class="mark-text">大模型回复</div>
+    <!-- <div class="mark-text">大模型回复</div> -->
     <!-- <loading v-if="true"></loading> -->
 </div>
 <queryTrainTickets></queryTrainTickets>
 <weather></weather>
-<searchGoods></searchGoods>
-<inputArea></inputArea>
+<weather></weather>
+<weather></weather>
+<weather></weather>
+<!-- <searchGoods></searchGoods> -->
+<!-- <inputArea></inputArea> -->
 </div>
 </template>
 
