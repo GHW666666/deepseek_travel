@@ -1,21 +1,23 @@
 <template>
-    <div style=" margin: 5px;"></div>
-    <div class="result-item">
     <div>
-        <p class="query-time">9.00</p>
-        <p class="station-name">昆明</p>
-    </div>
-    <div class="train-run-number">
-        <p>2小时30分</p>
-        <p>D7689</p>
-    </div>
-    <div>
-         <p class="query-time">10.00</p>
-        <p class="station-name">丽江</p>
-    </div>
-    <div>
-        <p class="production-price">¥123</p>
-    </div>
+        <div style=" margin: 5px;"></div>
+        <div class="result-item">
+        <div>
+            <p class="query-time">9.00</p>
+            <p class="station-name">昆明</p>
+        </div>
+        <div class="train-run-number">
+            <p>2小时30分</p>
+            <p>D7689</p>
+        </div>
+        <div>
+             <p class="query-time">10.00</p>
+            <p class="station-name">丽江</p>
+        </div>
+        <div>
+            <p class="production-price">¥123</p>
+        </div>
+        </div>
     </div>
 </template>
 

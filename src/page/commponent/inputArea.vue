@@ -7,20 +7,67 @@
              <van-uploader>
                  <van-button size="small"  type="default">上传文件</van-button>
              </van-uploader>
-              <van-button size="small" type="default">一键投诉</van-button>
+              <van-button size="small" type="default" @click="goToComplaintPage">一键投诉</van-button>
         </div>
         
         <div class="input-box-area">
-            <img src="" alt="">
-            <van-field class="input-content" type="textarea" placeholder="请输入询问内容" :border="false"></van-field>
-            <van-button class="send-button" size="small" type="default">发送</van-button>
+            <van-field v-model="inputText" class="input-content" type="textarea" placeholder="请输入询问内容" :border="false"></van-field>
+            <van-button class="send-button" size="small" type="default" @click="sendMessage">发送</van-button>
         </div>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-const fileList = ref([{url:"https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"}]);
+import { useRouter } from 'vue-router';
+import { chatApi } from '@/api/chat';
+
+const emit = defineEmits(['send-message']);
+
+const router = useRouter();
+const fileList = ref([]);
+const inputText = ref('');
+
+const goToComplaintPage = () => {
+    router.push('/complaintPage');
+};
+
+const sendMessage = async () => {
+    console.log('sendMessage 被调用');
+    console.log('输入内容:', inputText.value);
+    
+    if (!inputText.value.trim()) {
+        console.log('输入为空，不发送');
+        return;
+    }
+
+    const message = inputText.value;
+    inputText.value = '';
+
+    console.log('发送用户消息到前端:', message);
+    emit('send-message', { type: 'user', content: message });
+    console.log('用户消息事件已发送');
+
+    try {
+        console.log('开始发送消息到后端...');
+        await chatApi.sendToBackend(
+            [
+                {
+                    role: 'user',
+                    content: message
+                }
+            ],
+            (chunk) => {
+                console.log('接收到流式数据块:', chunk);
+                emit('send-message', { type: 'ai', content: chunk });
+                console.log('AI消息块已发送到前端');
+            }
+        );
+        console.log('流式数据发送完成');
+    } catch (error) {
+        console.error('发送消息到后端失败:', error);
+    }
+};
 </script>
 
 <style lang="less" scoped>
@@ -30,6 +77,7 @@ const fileList = ref([{url:"https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpe
     left: 0; /* 固定在左侧 */;
     right: 0;
     .data-query {
+        font-weight: bold;
         display: flex; /* 使用flex布局 */;
         align-items: center; /* 垂直居中 */;
         padding: 10px; /* 内边距 */;

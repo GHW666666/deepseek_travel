@@ -104,7 +104,6 @@ class ChatController {
 
 
 
-        console.log("这是下一次调用");
         // for await (const chunk of completion){
         //      const str= JSON.stringify(chunk);
         //         const obj= JSON.parse(str);
