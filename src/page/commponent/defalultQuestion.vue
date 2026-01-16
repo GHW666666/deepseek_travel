@@ -8,11 +8,18 @@
       <span>你可以这样问我</span>
       <div class="custome-service-list">
         <img src="@/assets/头像.jpg" alt="" />
-        <p>你好</p>
+        <p>你好，你能做什么</p>
+      </div>
+      <div class="custome-service-list">
+        <img src="@/assets/头像.jpg" alt="" />
+        <p>你好，帮我查询上海1.1号的天气</p>
+      </div>
+      <div class="custome-service-list">
+        <img src="@/assets/头像.jpg" alt="" />
+        <p>你好，帮我查询1.12号从上海到赣州的火车票</p>
       </div>
     </div>
     <div class="change-section">
-      <img src="" alt="" />
       <p>换一换</p>
     </div>
   </div>
@@ -69,18 +76,13 @@
 }
 .change-section {
   display: inline-flex;
-  align-items: center; /* 垂直居中 */
+  align-items: center;
   border-radius: 40px;
-  padding: 3px 2px;
+  padding: 2px 1px;
   background-color: #a8abb0;
-  img {
-    object-fit: cover; /* 保持图片比例并填充容器 */
-    height: 10px;
-    width: 10px; /* 图片宽度 */
-  }
   p {
     font-size: 10px;
-    padding: 7px;
+    padding: 5px;
     color: #ffffff;
   }
 }

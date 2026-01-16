@@ -47,7 +47,6 @@ const handleSendMessage = (message) => {
     if (chatMessageRef.value) {
         console.log('调用 addMessage');
         chatMessageRef.value.addMessage(message);
-        scrollToBottom();
     } else {
         console.error('chatMessageRef 为空');
     }
@@ -56,7 +55,7 @@ const handleSendMessage = (message) => {
 const updatePadding = () => {
     if (contentRef.value) {
         const messagesHeight = chatMessageRef.value?.$el?.scrollHeight || 0;
-        const padding = Math.max(150, messagesHeight + 200);  // 基于消息高度计算
+        const padding = Math.max(150, messagesHeight + 50);  // 基于消息高度计算
         
         contentRef.value.style.paddingBottom = `${padding}px`;
     }

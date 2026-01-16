@@ -1,6 +1,6 @@
 <template>
     <div>
- <van-nav-bar title="商品详情" left-arrow fixed :placeholder="false"></van-nav-bar>
+ <van-nav-bar title="商品详情" left-arrow fixed :placeholder="false" @click-left="onClickLeft"></van-nav-bar>
     <img class="cover-image" src="https://dimg04.c-ctrip.com/images/20010z000000mtr309554_D_769_510_Q100.jpg" alt="">
 
     <div class="price-and-title">
@@ -22,7 +22,13 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const onClickLeft = () => {
+  router.push("/");
+};
 </script>
 
 <style lang="less" scoped>
