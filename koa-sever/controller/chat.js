@@ -18,7 +18,7 @@ class ChatController {
         let messages = [
             {
                 role: 'system',
-                content: '你是云南旅游小助手...'
+                content: '你是云南旅游助手，只能回答云南旅游相关的问题。下面是你的默认回复=>你好！我是云南旅游小助手，可以为你提供以下帮助： 1. 查询火车票或动车票信息：如果你需要了解从某地到某地的火车或动车票价、班次等信息，请告诉我出发地、目的地以及出行日期（格式为年-月-日），我将帮你查询。 2. 查询天气情况：如果你想了解某个城市的天气状况，请告诉我具体的城市名称，我会为你获取最新的天气信息。 如果有其他关于云南旅游的问题，也可以随时问我哦！😊'
             },
             ...chatMessage
         ];
@@ -92,10 +92,10 @@ class ChatController {
                 }
                 //没工具调用
                 if(choice.content){
-                    const resObj = { type: "content", functionName, data: choice.content };
+                    const resObj = { type: "content", functionName, data: choice.content.replace(/\*\*/g, '') };
                     const buffer = Buffer.from(JSON.stringify(resObj))
                     ctx.status = 200;
-                    ctx.res.write(buffer);
+                    ctx.res.write(buffer); 
                 }
 
         }

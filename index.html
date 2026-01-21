@@ -27,6 +27,9 @@
      display: block;
      border: none;
     }
+    title{
+      font-family: "AliMaMa", monospace;
+    }
     body{
       background: linear-gradient(to bottom left, #a0c9ff,#f2f5fa);
       background-repeat: no-repeat;
@@ -34,11 +37,11 @@
       background-attachment: fixed;
     }
     @font-face {
-    font-family: "AliMaMa";
-    font-display: swap;
-    src: url('@/assets/fonts/AlimamaAgileVF-Thin.woff2') format('woff2'),
-         url('@/assets/fonts/AlimamaAgileVF-Thin.ttf') format('truetype');
-}
+      font-family: "AliMaMa";
+      font-display: swap;
+      src: url('/fonts/AlimamaAgileVF-Thin.woff2') format('woff2'),
+           url('/fonts/AlimamaAgileVF-Thin.ttf') format('truetype');
+    }
     .text-show{
     display: -webkit-box;
     text-overflow: ellipsis;
