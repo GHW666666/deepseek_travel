@@ -1,28 +1,56 @@
 <template>
     <div>
         <div style=" margin: 5px;"></div>
-        <div class="result-item">
+        <div class="result-item" v-for="(item, index) in ticketList" :key="index">
         <div>
-            <p class="query-time">9.00</p>
-            <p class="station-name">昆明</p>
+            <p class="query-time">{{ item.departuretime }}</p>
+            <p class="station-name">{{ item.departstation }}</p>
         </div>
         <div class="train-run-number">
-            <p>2小时30分</p>
-            <p>D7689</p>
+            <p>{{ item.costtime }}</p>
+            <p>{{ item.trainno }}</p>
         </div>
         <div>
-             <p class="query-time">10.00</p>
-            <p class="station-name">丽江</p>
+             <p class="query-time">{{ item.arrivaltime }}</p>
+            <p class="station-name">{{ item.terminalstation }}</p>
         </div>
         <div>
-            <p class="production-price">¥123</p>
+            <p class="production-price">¥{{ getLowestPrice(item) }}</p>
         </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 
+const ticketList = ref([]);
+
+const getLowestPrice = (item) => {
+    const seatTypes = ['yz', 'wz', 'rw', 'ze', 'swz', 'yw', 'zy'];
+    let lowestPrice = null;
+    
+    for (const seat of seatTypes) {
+        if (item[seat] && item[seat].price !== '--') {
+            const price = parseFloat(item[seat].price);
+            if (lowestPrice === null || price < lowestPrice) {
+                lowestPrice = price;
+            }
+        }
+    }
+    
+    return lowestPrice !== null ? lowestPrice : '--';
+};
+
+const loadTickets = (data) => {
+    if (data && data.list) {
+        ticketList.value = data.list;
+    }
+};
+
+defineExpose({
+    loadTickets
+});
 </script>
 
 <style lang="less" scoped>

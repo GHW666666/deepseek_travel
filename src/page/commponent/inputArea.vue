@@ -34,7 +34,6 @@ const goToComplaintPage = () => {
 
 const sendMessage = async () => {  
     if (!inputText.value.trim()) {
-
         return;
     }
 

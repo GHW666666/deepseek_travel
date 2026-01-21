@@ -16,7 +16,12 @@ router.get('/complaint/list', complaint.list);       // 获取投诉列表
 router.post('/complaint/detail', complaint.detail);  // 获取投诉详情
 router.post('/complaint/updateStatus', complaint.updateStatus);  // 更新投诉状态
 
+//工具调用接口
+const tool=require('@/controller/tool');
+router.post('/tool/trainTickets', tool.queryTrainTickets);  // 查询火车票
+router.post('/tool/weather', tool.getWeather);            // 查询天气
 
-router.post('/chatMessage',chat.chatMessage);
+
+router.post('/chatMessage', (ctx) => chat.chatMessage(ctx));
 router.post('/uploadFile',uploadFile.single('file'),chat.uploadFile)
 module.exports=router;
