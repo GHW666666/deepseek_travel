@@ -40,10 +40,6 @@ const contentRef = ref(null);
 // };
 
 const handleSendMessage = (message) => {
-    console.log('handleSendMessage 被调用');
-    console.log('接收到的消息:', message);
-    console.log('chatMessageRef:', chatMessageRef.value);
-    
     if (chatMessageRef.value) {
         console.log('调用 addMessage');
         chatMessageRef.value.addMessage(message);
@@ -55,7 +51,7 @@ const handleSendMessage = (message) => {
 const updatePadding = () => {
     if (contentRef.value) {
         const messagesHeight = chatMessageRef.value?.$el?.scrollHeight || 0;
-        const padding = Math.max(150, messagesHeight + 50);  // 基于消息高度计算
+        const padding = Math.max(200, messagesHeight + 50);  // 基于消息高度计算
         
         contentRef.value.style.paddingBottom = `${padding}px`;
     }

@@ -20,6 +20,7 @@
     "koa-static": "^5.0.0",
     "module-alias": "^2.2.3",
     "multer": "^2.0.2",
+    "mysql2": "^3.16.1",
     "openai": "^6.7.0"
   }
 }

@@ -32,22 +32,15 @@ const goToComplaintPage = () => {
     router.push('/complaintPage');
 };
 
-const sendMessage = async () => {
-    console.log('sendMessage 被调用');
-    console.log('输入内容:', inputText.value);
-    
+const sendMessage = async () => {  
     if (!inputText.value.trim()) {
-        console.log('输入为空，不发送');
+
         return;
     }
 
     const message = inputText.value;
     inputText.value = '';
-
-    console.log('发送用户消息到前端:', message);
     emit('send-message', { type: 'user', content: message });
-    console.log('用户消息事件已发送');
-
     try {
         console.log('开始发送消息到后端...');
         await chatApi.sendToBackend(
