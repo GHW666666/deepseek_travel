@@ -69,9 +69,20 @@ class ChatController {
 
             if (obj.choices[0].finish_reason === "tool_calls") {
                 console.log("工具名称:", functionName);
-                console.log("工具参数:", requireParameters);
+                console.log("工具参数字符串:", requireParameters);
+                console.log("工具参数类型:", typeof requireParameters);
                 
-                const resObj = { type: "function", functionName, data: JSON.parse(requireParameters) };
+                let parsedData;
+                try {
+                    parsedData = JSON.parse(requireParameters);
+                    console.log("解析后的参数:", JSON.stringify(parsedData, null, 2));
+                } catch (e) {
+                    console.error("解析参数失败:", e);
+                    console.error("原始参数字符串:", requireParameters);
+                }
+                
+                const resObj = { type: "function", functionName, data: parsedData };
+                console.log("发送给前端的数据:", JSON.stringify(resObj, null, 2));
                 const buffer = Buffer.from(JSON.stringify(resObj) + '\n');
                 ctx.status = 200;
                 ctx.res.write(buffer);

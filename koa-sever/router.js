@@ -21,7 +21,6 @@ const tool=require('@/controller/tool');
 router.post('/tool/trainTickets', tool.queryTrainTickets);  // 查询火车票
 router.post('/tool/weather', tool.getWeather);            // 查询天气
 
-
 router.post('/chatMessage', (ctx) => chat.chatMessage(ctx));
 router.post('/uploadFile',uploadFile.single('file'),chat.uploadFile)
 module.exports=router;

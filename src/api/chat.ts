@@ -39,13 +39,15 @@ export const chatApi = {
                             }
                         } else if (data.type === 'function') {
                             console.log('工具调用:', data.functionName, data.data);
+                            console.log('工具调用数据详情:', JSON.stringify(data.data, null, 2));
                             
                             if (data.functionName === 'trainTickets') {
-                                const { departure, destination, date } = data.data;
-                                console.log('调用火车票查询API:', departure, destination, date);
+                                const { departure: start, destination: end } = data.data;
+                                console.log('解构后的参数:', { start, end, startType: typeof start, endType: typeof end });
+                                console.log('调用火车票查询API:', start, end);
                                 
                                 try {
-                                    const result = await toolApi.queryTrainTickets(departure, destination, date);
+                                    const result = await toolApi.queryTrainTickets(start, end);
                                     console.log('火车票查询结果:', result);
                                     
                                     let ticketInfo = '火车票查询结果：\n\n';
