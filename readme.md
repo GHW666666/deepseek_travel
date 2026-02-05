@@ -19,4 +19,5 @@ ts约束前后端数据类型
 ## 2.5(后台业务逻辑优化，session保存查询状态)
 两个页面manuscriptList页面和manuscriptDetail页面，我希望用户在list页面跳转到detail页面时，能够保留用户在list页面的查询状态，比如用户在list页面输入了某个关键词进行搜索，然后跳转到detail页面，我希望用户在返回list页面的时候，还能够看到上次的搜索结果。用sessionStorage记录查询状态
 为什么用sessionStorage？
+
 因为sessionStorage是在浏览器关闭时才会被清空，所以用户在关闭浏览器后，再次打开浏览器时，sessionStorage中的数据就会被清空。这样就可以实现用户在list页面跳转到detail页面时，能够保留用户在list页面的查询状态。
