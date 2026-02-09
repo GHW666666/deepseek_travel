@@ -21,3 +21,6 @@ ts约束前后端数据类型
 为什么用sessionStorage？
 
 因为sessionStorage是在浏览器关闭时才会被清空，所以用户在关闭浏览器后，再次打开浏览器时，sessionStorage中的数据就会被清空。这样就可以实现用户在list页面跳转到detail页面时，能够保留用户在list页面的查询状态。
+
+## 2.9(了解项目响应式适配不同的屏幕原理)
+![alt text](./public/image.png)
