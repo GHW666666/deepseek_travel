@@ -8,6 +8,7 @@
                  <van-button size="small"  type="default">上传文件</van-button>
              </van-uploader>
               <van-button size="small" type="default" @click="goToComplaintPage">一键投诉</van-button>
+              <van-button size="small" type="default" @click="clearHistory">清空记录</van-button>
         </div>
         
         <div class="input-box-area">
@@ -21,15 +22,32 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { chatApi } from '@/api/chat';
+import { useChatStore } from '@/store/chat';
+import { showToast, showConfirmDialog } from 'vant';
 
 const emit = defineEmits(['send-message']);
 
 const router = useRouter();
+const chatStore = useChatStore();
 const fileList = ref([]);
 const inputText = ref('');
 
 const goToComplaintPage = () => {
     router.push('/complaintPage');
+};
+
+const clearHistory = async () => {
+    try {
+        await showConfirmDialog({
+            title: '确认清空',
+            message: '确定要清空所有聊天记录吗？',
+        });
+        await chatStore.clearMessages();
+        showToast('历史记录已清空');
+        emit('send-message', { type: 'clear', content: '' });
+    } catch {
+        // 用户取消
+    }
 };
 
 const sendMessage = async () => {  

@@ -40,6 +40,10 @@ const contentRef = ref(null);
 // };
 
 const handleSendMessage = (message) => {
+    if (message.type === 'clear') {
+        updatePadding();
+        return;
+    }
     if (chatMessageRef.value) {
         console.log('调用 addMessage');
         chatMessageRef.value.addMessage(message);
