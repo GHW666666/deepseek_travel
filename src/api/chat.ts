@@ -32,25 +32,24 @@ export const chatApi = {
                 for (const line of lines) {
                     try {
                         const data = JSON.parse(line);
+                        
                         if (data.type === 'content') {
                             fullContent += data.data;
                             if (onChunk) {
                                 onChunk(data.data);
                             }
                         } else if (data.type === 'function') {
-                            console.log('工具调用:', data.functionName, data.data);
-                            console.log('工具调用数据详情:', JSON.stringify(data.data, null, 2));
+                            console.log('收到工具调用:', data.functionName, data.data);
                             
                             if (data.functionName === 'trainTickets') {
                                 const { departure: start, destination: end } = data.data;
-                                console.log('解构后的参数:', { start, end, startType: typeof start, endType: typeof end });
                                 console.log('调用火车票查询API:', start, end);
                                 
                                 try {
                                     const result = await toolApi.queryTrainTickets(start, end);
                                     console.log('火车票查询结果:', result);
                                     
-                                    let ticketInfo = '火车票查询结果：\n\n';
+                                    let ticketInfo = '';
                                     
                                     if (result && result.data && result.data.list) {
                                         const tickets = result.data.list;
@@ -94,7 +93,7 @@ export const chatApi = {
                                     const result = await toolApi.getWeather(city);
                                     console.log('天气查询结果:', result);
                                     
-                                    let weatherInfo = `天气查询结果：\n`;
+                                    let weatherInfo = '';
                                     
                                     if (result && result.data) {
                                         const weatherData = result.data;
