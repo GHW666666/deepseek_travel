@@ -2,7 +2,7 @@
 封装规范 api文件（封装规范） 
 后端controller （封装规范）
 在openai的传统Function Calling流程中当tool调用参数返回给前端，前端拿到结果后需要第二次请求大模型接口，但是这样会浪费token，所以我简化了流程，在大模型返回给前端tool参数时直接用end方法中断sse连接后续chunk就不会发送，并且前端通过直接调用tool接口实现功能，这样不仅提高了和大模型的对话效率，减少了token的浪费，还加速了前端页面的渲染（项目优化）
-在记录llm的聊天记录时想到了用pinia去管理对话状态，但是pinia是存储在内存中的，后续考虑到了localStorage去存储聊天记录，但是后续发现localStorage的大小限制，所以最终选择了idb（项目优化）
+在记录llm的聊天记录时想到了用pinia去管理对话状态，但是pinia是存储在内存中的，后续考虑到了localStorage去存储聊天记录，但是后续发现localStorage的大小限制，所以最终选择了indexdb（项目优化）
 在设计火车票调用接口时发现接口无鉴权（思考，解决问题）
 # 困惑记录
 后端路由
@@ -10,6 +10,17 @@ router.post('/chatMessage', (ctx) => chat.chatMessage(ctx));一开始的回调�
 # 还需改进
 ts约束前后端数据类型
 前后端都用proxy封装，使用代理模式，
+项目加入rag
+rag流程
+loader 加载文档=》text.split()切割文档为mate信息=》Embedding模型将mate信息转换为向量=》向量存储到向量数据库
+![alt text](image.png)
+以下为三种切割器
+                                                   TextSpliter
+                                                characterTextSpliter                    TokenText                           RecursiveCharacter chunksize overlap
+
+![alt text](image-1.png)
+
+
 # 实习解决的问题
 ## 1.30（vibe coding 1000行代码解决）
 用python写一个函数，贴合二次元业务，轻量化实现根据歌词描述生成对应图片的功能，全程vibe coding 一开始用pillow库拼像素点，后续优化的过程中发现两个问题
